@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .alert {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert strong {
+            color: #333;
+        }
+
+        .alert button.close {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .alert button.close:hover {
+            color: red;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alerts-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="this.parentElement.style.display = 'none';">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    
+    <h1>Welcome to the Authentication System using Django</h1>
+
+    {% if user.is_authenticated %}
+    <h2>Hello, {{ fname }}</h2>
+    <p>You are successfully logged in.</p>
+    <a class="btn" href="/signout">Sign Out</a>
+    {% else %}
+    <a class="btn" href="/signup">Sign Up</a>
+    <a class="btn" href="/signin">Sign In</a>
+    {% endif %}
+</body>
+</html>
